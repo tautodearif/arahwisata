@@ -1,0 +1,14 @@
+ARAHWISATA — PAKET SIAP VERCEL
+
+Ekstrak ZIP. Pastikan index.html, app.js, styles.css, dan folder assets berada langsung di AKAR repositori GitHub (bukan dalam folder dist atau arahwisata-website). Jangan unggah ZIP sebagai satu file.
+
+Konfigurasi proyek Vercel yang menggunakan repositori ini:
+- Framework Preset: Other
+- Root Directory: ./ (akar repositori)
+- Build Command: kosong / tidak di-override
+- Output Directory: kosong / tidak di-override
+- Install Command: kosong / tidak di-override
+
+Push atau commit file ke branch main. Vercel akan membuat deployment baru. Buka domain produksi untuk menguji index.html dan halaman lain. Jika nama proyek pada Settings > General sudah arahwisata, jangan membuat proyek duplikat. Nama URL lama dikelola terpisah melalui Settings > Domains. Tambahkan arahwisata.vercel.app bila tersedia, lalu tetapkan ke Production.
+
+Fitur formulir mempersiapkan email, tidak memproses pembayaran. Monitoring dan paspor bersifat lokal pada browser.
