@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');const vm=require('node:vm');const fs=require('node:fs');const core=require('../dist/core.js');const context={window:{}};vm.createContext(context);vm.runInContext(fs.readFileSync(__dirname+'/../dist/data.js','utf8'),context);const ps=context.window.ARAH_DATA.programs;
+assert.deepEqual(core.quote(ps[0],1),{groups:1,total:2500000,deposit:1250000});
+assert.equal(core.quote(ps[0],10).total,2500000);
+assert.deepEqual(core.quote(ps[0],11),{groups:2,total:5000000,deposit:2500000});
+assert.equal(core.quote(ps[1],6).total,2250000);assert.equal(core.quote(ps[1],7).total,4500000);
+assert.equal(core.quote(ps[2],10).total,3250000);
+for(const n of [0,-1,101,1.5,NaN])assert.throws(()=>core.quote(ps[0],n));
+assert.equal(core.escape('<script>"&'),'&lt;script&gt;&quot;&amp;');
+assert.ok(core.csv([['=1+1','Hello, "forest"']]).includes("'=1+1"));
+const r={id:'a',type:'transaksi',date:'2026-10-10',category:'Penjualan produk',label:'KEPOTA',value:25000,status:'green',notes:''};assert.ok(core.validRecord(r));assert.ok(!core.validRecord({...r,value:-1}));assert.ok(!core.validRecord({...r,type:'admin'}));assert.ok(!core.validRecord({...r,notes:'x'.repeat(2001)}));assert.ok(!core.validRecord({...r,status:'trusted'}));
+console.log('PASS: batas kelompok, minimum tarif, uang muka, validasi impor, sanitasi HTML dan CSV.');
